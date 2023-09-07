@@ -1,0 +1,72 @@
+.bookmark-container {
+    background-color: lightgrey;
+    margin-top: -37.5rem;
+    margin-left: -1rem;
+    user-select: none;
+    border-radius: 10px;
+    padding: 10px;
+    width: 430px;
+    height: 620px;
+    position: relative;
+    display: block;
+    left: 14%;
+    transform: translate(-50%, 95%);
+}
+
+.bookmark-container-list {
+    height: 615px;
+    background-color: rgb(53, 146, 252);
+    border-radius: 10px;
+    overflow: auto;
+}
+
+.zalozka-nadpis {
+    margin-top: 0.1rem;
+    padding-top: 1rem;
+}
+
+.add-tab {
+    margin-left: 0.3rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 10px 15px;
+    background-color: #272727;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    user-select: none;
+    font-size: large;
+}
+
+.add-tab:hover {
+    background-color: rgb(214, 214, 214);
+    color: #015fe2;
+    transform: scale(1.1);
+}
+
+.generate-schema {
+    margin-left: 0.6rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 10px 15px;
+    background-color: #272727;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    user-select: none;
+    font-size: large;
+}
+
+.generate-schema:hover {
+    background-color: rgb(214, 214, 214);
+    color: #015fe2;
+    transform: scale(1.1);
+}

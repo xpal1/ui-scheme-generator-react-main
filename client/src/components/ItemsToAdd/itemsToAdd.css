@@ -1,0 +1,38 @@
+.items-to-add-container {
+    background-color: rgb(56, 149, 255);
+    margin-top: 0.5rem;
+    user-select: none;
+    border-radius: 10px;
+    padding: 10px 10px 0px 10px;
+    width: 900px;
+    height: 638px;
+    position: relative;
+    display: block;
+    overflow: auto;
+}
+
+.items-to-add-droppable {
+    background-color: blue;
+    border-radius: 10px;
+}
+
+.items-to-add-provided {
+    background-color: rgb(179, 209, 255);
+    border-radius: 0.7rem;
+    height: 550px;
+    min-width: 400px;
+    overflow: auto;
+    position: relative;
+}
+
+.items-to-add-draggable {
+    padding: 1rem;
+}
+
+.field-type-item {
+    transition-duration: 0.4s;
+}
+
+.field-type-item:hover {
+    color: rgb(56, 149, 255);
+}

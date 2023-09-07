@@ -1,0 +1,26 @@
+.add-group-btn {
+    margin-left: 1rem;
+    margin-bottom: 0.5rem;
+    padding: 10px 15px;
+    background-color: #272727;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    user-select: none;
+    display: flex;
+    font-size: large;
+}
+
+.add-group-btn:hover {
+    background-color: rgb(214, 214, 214) !important;
+    color: #015fe2;
+    transform: scale(1.1);
+}
+
+.add-group-btn:active {
+    transform: scale(0.9);
+}

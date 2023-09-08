@@ -36,3 +36,11 @@
 .field-type-item:hover {
     color: rgb(56, 149, 255);
 }
+
+.line {
+    height: 2.5px;
+    background-color: #424242;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 0.7rem;
+}

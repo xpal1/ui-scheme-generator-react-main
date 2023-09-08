@@ -8,16 +8,18 @@ function ItemsToAdd({
   getItemAddStyle,
   getListItemAddStyle,
   itemsToAdd,
-  handleAddItem,
 }) {
   const handleAddGroup = (result) => {
-    console.log(result);
-    const { draggableId } = result;
-    const item = schema3Data.find((schema) => schema.iId === draggableId);
-    if (item) {
-      handleAddItem(item);
-    }
+    // console.log(result);
+    // const { draggableId } = result;
+    // const item = schema3Data.find((schema) => schema.iId === draggableId);
+    // if (item) {
+    //   handleAddItem(item);
+    // }
+    setShowLine(true);
   };
+
+  const [showLine, setShowLine] = useState(false);
 
   const [showFieldAndType, setShowFieldAndType] = useState(false);
 
@@ -45,7 +47,11 @@ function ItemsToAdd({
             {...provided.droppableProps}
           >
             {itemsToAdd.map((item, index) => (
-              <Draggable key={item.iId}  draggableId={`itemToAdd-${item.iId}`} index={index}>
+              <Draggable
+                key={item.iId}
+                draggableId={`itemToAdd-${item.iId}`}
+                index={index}
+              >
                 {(provided, snapshot) => (
                   <div
                     ref={provided.innerRef}
@@ -60,20 +66,20 @@ function ItemsToAdd({
                   >
                     {showFieldAndType ? (
                       <>
-                      <div className="field-type-item">
-                        {item.iField} | {item.iType}
-                      </div>
+                        <div className="field-type-item">
+                          {item.iField} | {item.iType}
+                        </div>
                       </>
                     ) : (
-                      <>
-                        {item.iTitle}
-                      </>
+                      <>{item.iTitle}</>
                     )}
                   </div>
                 )}
               </Draggable>
             ))}
+            
             {provided.placeholder}
+            {showLine && <div className="line"></div>}
           </div>
         )}
       </Droppable>

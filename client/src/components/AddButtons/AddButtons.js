@@ -16,7 +16,7 @@ function AddButtons({ handleAddGroup }) {
         className="add-group-btn"
         onClick={handleAddGroup}
       >
-        <AddCircleOutlineIcon fontSize="small" /> &nbsp; Pridať novú skupinu
+        <AddCircleOutlineIcon fontSize="small" /> &nbsp; Pridať čiaru
       </motion.button>
     </div>
   );

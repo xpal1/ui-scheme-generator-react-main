@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { DragDropContext } from "react-beautiful-dnd";
 import { motion } from "framer-motion";
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import ConstructionIcon from "@mui/icons-material/Construction";
@@ -8,41 +7,7 @@ import "./bookmark.css";
 function Bookmark({ active, itemsToAdd }) {
   const [tabCount, setTabCount] = useState(1);
   const [tabs, setTabs] = useState([{ id: tabCount, items: [] }]);
-
-  const handleDragEnd = (result) => {
-    const { source, destination } = result;
-
-    if (!destination) {
-      return;
-    }
-
-    const sourceTab = tabs.find((tab) => tab.id === source.droppableId);
-    const destinationTab = tabs.find(
-      (tab) => tab.id === destination.droppableId
-    );
-
-    if (!sourceTab || !destinationTab) {
-      return;
-    }
-
-    const sourceItems = Array.from(sourceTab.items);
-    const destinationItems = Array.from(destinationTab.items);
-
-    const [removed] = sourceItems.splice(source.index, 1);
-    destinationItems.splice(destination.index, 0, removed);
-
-    const updatedTabs = tabs.map((tab) => {
-      if (tab.id === sourceTab.id) {
-        return { ...tab, items: sourceItems };
-      }
-      if (tab.id === destinationTab.id) {
-        return { ...tab, items: destinationItems };
-      }
-      return tab;
-    });
-
-    setTabs(updatedTabs);
-  };
+  const [activeTab, setActiveTab] = useState(0);
 
   const handleAddTab = () => {
     const newTabItems = itemsToAdd.map((item) => ({
@@ -94,13 +59,14 @@ function Bookmark({ active, itemsToAdd }) {
     <div className="bookmark-container">
       {active && (
         <div className="bookmark-container-list">
-          <DragDropContext onDragEnd={handleDragEnd}>
-            {itemsToAdd.map((item, index) => (
-              <div key={item.iId}>
-                <h2 className="zalozka-nadpis">Záložka č.{index + 1}</h2>
+            {tabs.map((tab, index) => (
+              <div key={tab.id} style={{ display: activeTab === index ? "none" : "block" }}>
+                <h2 className="zalozka-nadpis">Záložka č.{index}</h2>
+                {tab.items.map((item, itemIndex) => (
+                <p key={itemIndex}>{item.title}</p>
+              ))}
               </div>
             ))}
-          </DragDropContext>
           <motion.button
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}

@@ -8,14 +8,9 @@ function ItemsToAdd({
   getItemAddStyle,
   getListItemAddStyle,
   itemsToAdd,
+  handleAddItem,
 }) {
-  const handleAddGroup = (result) => {
-    // console.log(result);
-    // const { draggableId } = result;
-    // const item = schema3Data.find((schema) => schema.iId === draggableId);
-    // if (item) {
-    //   handleAddItem(item);
-    // }
+  const handleAddLine = () => {
     setShowLine(true);
   };
 
@@ -36,7 +31,8 @@ function ItemsToAdd({
       <AddButtons
         schema3Data={schema3Data}
         setState={schema3Data}
-        handleAddGroup={handleAddGroup}
+        handleAddLine={handleAddLine}
+        handleAddItem={handleAddItem}
       />
       <Droppable key="droppableToAdd" droppableId="droppableToAdd">
         {(provided, snapshot) => (
@@ -77,7 +73,6 @@ function ItemsToAdd({
                 )}
               </Draggable>
             ))}
-            
             {provided.placeholder}
             {showLine && <div className="line"></div>}
           </div>

@@ -70,3 +70,27 @@
     color: #015fe2;
     transform: scale(1.1);
 }
+
+.toggle-area {
+    transition-duration: 0.4s;
+}
+
+.toggle-area:hover {
+    color:rgb(192, 221, 255);
+    font-size: large;
+    cursor: pointer;
+}
+
+.zalozka-nadpis {
+    text-transform: capitalize;
+    transition-duration: 0.4s;
+}
+
+.zalozka-obsah {
+    color: rgb(31, 31, 31);
+    background-color: rgb(89, 165, 253);
+    border-radius: 5px;
+    border-style: dashed;
+    border-color: rgb(165, 207, 255);
+    border-width: 1px;
+}

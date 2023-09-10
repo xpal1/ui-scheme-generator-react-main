@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import ConstructionIcon from "@mui/icons-material/Construction";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import "./bookmark.css";
 
 function Bookmark({ active, itemsToAdd }) {
@@ -23,6 +25,12 @@ function Bookmark({ active, itemsToAdd }) {
     setTabs([...tabs, newTab]);
     setTabCount(tabCount + 1);
     console.log(newTab);
+  };
+
+  const toggleTabContent = (index) => {
+    const updatedTabs = [...tabs];
+    updatedTabs[index].showContent = !updatedTabs[index].showContent;
+    setTabs(updatedTabs);
   };
 
   const generateSchema = () => {
@@ -59,14 +67,38 @@ function Bookmark({ active, itemsToAdd }) {
     <div className="bookmark-container">
       {active && (
         <div className="bookmark-container-list">
-            {tabs.map((tab, index) => (
-              <div key={tab.id} style={{ display: activeTab === index ? "none" : "block" }}>
-                <h2 className="zalozka-nadpis">Záložka č.{index}</h2>
-                {tab.items.map((item, itemIndex) => (
-                <p key={itemIndex}>{item.title}</p>
-              ))}
+          {tabs.map((tab, index) => (
+            <div
+              key={tab.id}
+              style={{ display: activeTab === index ? "none" : "block" }}
+            >
+              <div
+                onClick={() => toggleTabContent(index)}
+                className="toggle-area"
+              >
+                <h2 className="zalozka-nadpis">
+                  Záložka č.{index}
+                  <span className="zalozka-toggle">
+                    {tab.showContent ? (
+                      <ArrowDropUpIcon />
+                    ) : (
+                      <ArrowDropDownIcon />
+                    )}
+                  </span>
+                </h2>
               </div>
-            ))}
+
+              {tab.showContent && (
+                <div className="zalozka-obsah">
+                  {tab.items.map((item, itemIndex) => (
+                    <p key={itemIndex}>
+                     {item.title} | {item.type}
+                    </p>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
           <motion.button
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}

@@ -35,7 +35,7 @@ function ItemsDroppable({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {showTypewriter && (
+      {!showTypewriter && (
         <h3 className="uvod-items">
           <Typewriter
             options={{

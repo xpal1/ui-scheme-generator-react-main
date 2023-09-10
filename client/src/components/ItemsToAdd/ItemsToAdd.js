@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import AddButtons from "../AddButtons/AddButtons";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import "./itemsToAdd.css";
 
 function ItemsToAdd({
@@ -26,6 +27,20 @@ function ItemsToAdd({
     setShowFieldAndType(false);
   };
 
+  const [showAddItem, setShowAddItem] = useState(true);
+
+  const handleMouseEnter1 = () => {
+    setShowAddItem(false);
+  };
+
+  const handleMouseLeave1 = () => {
+    setShowAddItem(true);
+  };
+
+  useEffect(() => {
+    setShowAddItem(true);
+  }, []);
+
   return (
     <div className="items-to-add-container">
       <AddButtons
@@ -35,48 +50,64 @@ function ItemsToAdd({
         handleAddItem={handleAddItem}
       />
       <Droppable key="droppableToAdd" droppableId="droppableToAdd">
-        {(provided, snapshot) => (
-          <div
-            className="items-to-add-container"
-            ref={provided.innerRef}
-            style={getListItemAddStyle(snapshot.isDraggingOver)}
-            {...provided.droppableProps}
-          >
-            {itemsToAdd.map((item, index) => (
-              <Draggable
-                key={item.iId}
-                draggableId={`itemToAdd-${item.iId}`}
-                index={index}
-              >
-                {(provided, snapshot) => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    style={getItemAddStyle(
-                      snapshot.isDragging,
-                      provided.draggableProps.style
-                    )}
-                    onClick={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    {showFieldAndType ? (
-                      <>
-                        <div className="field-type-item">
-                          {item.iField} | {item.iType}
-                        </div>
-                      </>
-                    ) : (
-                      <>{item.iTitle}</>
-                    )}
-                  </div>
-                )}
-              </Draggable>
-            ))}
-            {provided.placeholder}
-            {showLine && <div className="line"></div>}
-          </div>
-        )}
+        {(provided, snapshot) => {
+          const isDraggingOver = snapshot.isDraggingOver;
+          const listItemAddStyle = getListItemAddStyle(isDraggingOver);
+
+          return (
+            <div
+              onMouseEnter={handleMouseEnter1}
+              onMouseLeave={handleMouseLeave1}
+              className="items-to-add-container"
+              ref={provided.innerRef}
+              style={listItemAddStyle}
+              {...provided.droppableProps}
+            >
+              {showAddItem && !isDraggingOver && (
+                <div className="add-item-div">
+                  <p className="add-item-text">Sem pridajte UI položku</p>
+                  <p className="add-item-text-add">
+                    <AddCircleOutlineIcon fontSize="large" />
+                  </p>
+                </div>
+              )}
+
+              {itemsToAdd.map((item, index) => (
+                <Draggable
+                  key={item.iId}
+                  draggableId={`itemToAdd-${item.iId}`}
+                  index={index}
+                >
+                  {(provided, snapshot) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      style={getItemAddStyle(
+                        snapshot.isDragging,
+                        provided.draggableProps.style
+                      )}
+                      onClick={handleMouseEnter}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      {showFieldAndType ? (
+                        <>
+                          <div className="field-type-item">
+                            {item.iField} | {item.iType}
+                          </div>
+                        </>
+                      ) : (
+                        <>{item.iTitle}</>
+                      )}
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+              {showLine && <div className="line"></div>}
+            </div>
+          );
+        }}
       </Droppable>
     </div>
   );

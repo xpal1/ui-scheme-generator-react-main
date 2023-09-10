@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import "./addButtons.css";
 
 function AddButtons({ handleAddLine, handleAddItem }) {
@@ -34,7 +35,7 @@ function AddButtons({ handleAddLine, handleAddItem }) {
         className="add-group-btn"
         onClick={handleAddLine}
       >
-        <AddCircleOutlineIcon fontSize="small" /> &nbsp; Pridať čiaru
+        <HorizontalRuleIcon fontSize="small" /> &nbsp; Pridať čiaru
       </motion.button>
       {!showCustomItemInput && (
         <motion.button
@@ -47,7 +48,7 @@ function AddButtons({ handleAddLine, handleAddItem }) {
           className="add-group-btn"
           onClick={() => setShowCustomItemInput(true)}
         >
-          <AddCircleOutlineIcon fontSize="small" /> &nbsp; Pridať vlastnú
+          <AppRegistrationIcon fontSize="small" /> &nbsp; Pridať vlastnú
           položku
         </motion.button>
       )}

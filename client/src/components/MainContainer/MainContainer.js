@@ -279,13 +279,19 @@ const getListStyle = (isDraggingOver) => ({
 });
 
 const getListItemAddStyle = (isDraggingOver) => ({
-  background: isDraggingOver ? "lightblue" : "rgb(133, 187, 250)",
+  background: "rgb(133, 187, 250)",
   padding: grid,
   width: "auto",
   height: 550,
   borderRadius: "10px",
   marginBottom: "0.85rem",
   overflow: "auto",
+  borderStyle: "dashed",
+  borderColor: "whitesmoke",
+  borderWidth: "5px",
+  backgroundImage: isDraggingOver
+    ? "repeating-linear-gradient(-45deg, whitesmoke, rgb(89, 165, 253) 2px, transparent 2px, transparent 20px)"
+    : "none",
 });
 
 function MainContainer() {

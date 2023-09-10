@@ -1,8 +1,18 @@
-.delete-btn {
+.items-list-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.items-list-header {
+    display: flex;
+    align-items: center;
+}
+
+.info-dropdown-btn {
     margin-left: 1rem;
     padding: 5px 10px;
     background-color: transparent;
-    color: #e20e0e;
+    color: #0e94e2;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -12,9 +22,21 @@
     user-select: none;
 }
 
-.delete-btn:hover {
-    background-color: #e20e0e;
-    color: white;
+.info-dropdown-content {
+    width: 100%;
+    background-color: #f9f9f9;
+    padding: 8px;
+    border-style: dotted;
+    border-color: #c2c2c2;
+    border-radius: 0.5rem;
+    border-width: 3px;
+    margin-left: -0.55rem;
+    margin-top: 1rem;
+}
+
+.info-dropdown-content p {
+    margin: 0;
+    padding: 4px 0;
 }
 
 .items-list-input {
@@ -23,6 +45,7 @@
     border-radius: 0.3rem;
     text-align: center;
     transition: 0.4s ease-in-out;
+    height: 2rem;
 }
 
 .items-list-input:focus,

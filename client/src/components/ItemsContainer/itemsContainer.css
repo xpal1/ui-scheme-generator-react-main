@@ -2,7 +2,6 @@
     display: flex;
     margin-bottom: 0.8rem;
     transition-duration: 1.5s;
-    opacity: 0.5;
 }
 
 .items-div {
@@ -10,7 +9,7 @@
     border-radius: 10px;
     display: flex;
     padding: 0.3rem;
-    width: auto;
+    width: 1840px;
 }
 
 .items-container:hover {

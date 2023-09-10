@@ -57,6 +57,8 @@ function AddButtons({ handleAddLine, handleAddItem }) {
           <input
             className="input-custom"
             type="text"
+            required="true"
+            autoFocus="true"
             value={customItemName}
             onChange={(e) => setCustomItemName(e.target.value)}
             placeholder="Zadajte názov vlastnej položky"

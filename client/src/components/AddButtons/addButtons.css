@@ -76,4 +76,19 @@
     text-align: center;
     margin-top: -0.2rem;
     margin-bottom: 0.2rem;
+    transition: 0.4s ease-in-out;
+}
+
+.input-custom:focus,
+.input-custom:hover {
+    outline: none;
+    border-color: rgb(121, 189, 252);
+    border-style: solid;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0 3px #76b6ff;
+}
+
+.input-custom:hover::placeholder,
+.input-custom:focus::placeholder {
+  color: rgb(2, 108, 207);
 }

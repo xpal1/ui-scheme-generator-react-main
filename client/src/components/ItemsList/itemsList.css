@@ -16,3 +16,26 @@
     background-color: #e20e0e;
     color: white;
 }
+
+.items-list-input {
+    border-style: solid dotted dotted solid;
+    border-color: rgb(121, 189, 252);
+    border-radius: 0.3rem;
+    text-align: center;
+    transition: 0.4s ease-in-out;
+}
+
+.items-list-input:focus,
+.items-list-input:hover {
+    outline: none;
+    border-color: rgb(121, 189, 252);
+    border-style: solid;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0 1px #76b6ff;
+    transition: 0.4s ease-in-out;
+}
+
+.items-list-input:hover::placeholder,
+.items-list-input:focus::placeholder {
+    color: rgb(2, 108, 207);
+}

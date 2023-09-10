@@ -13,11 +13,12 @@ function ItemsList({ schema, newState, itemKey, index, setState }) {
       {schema.iTitle}
       <input
         type={schema.iType}
-        field={schema.iField}
+        placeholder={schema.iField}
         required={schema.iIsRequired}
         max={schema.iMaxValue}
         maxLength={schema.iMaxLength}
         tabIndex={schema.iTabIndex}
+        className="items-list-input"
       />
       <button
         type="button"

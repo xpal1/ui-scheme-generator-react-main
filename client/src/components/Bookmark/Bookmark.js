@@ -4,12 +4,17 @@ import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import ConstructionIcon from "@mui/icons-material/Construction";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import EditIcon from "@mui/icons-material/Edit";
+import SaveIcon from "@mui/icons-material/Save";
+import DeleteIcon from '@mui/icons-material/Delete';
 import "./bookmark.css";
 
 function Bookmark({ active, itemsToAdd }) {
   const [tabCount, setTabCount] = useState(1);
   const [tabs, setTabs] = useState([{ id: tabCount, items: [] }]);
   const [activeTab, setActiveTab] = useState(0);
+  const [editIndex, setEditIndex] = useState(null);
+  const [newTitle, setNewTitle] = useState("");
 
   const handleAddTab = () => {
     const newTabItems = itemsToAdd.map((item) => ({
@@ -28,8 +33,34 @@ function Bookmark({ active, itemsToAdd }) {
   };
 
   const toggleTabContent = (index) => {
+    setTabs((prevTabs) => {
+      const updatedTabs = [...prevTabs];
+      updatedTabs[index].showContent = !updatedTabs[index].showContent;
+      return updatedTabs;
+    });
+  };
+
+  const handleEditClick = (index) => {
+    setEditIndex(index);
+    setNewTitle(tabs[index].title);
+  };
+
+  const handleTitleChange = (e) => {
+    setNewTitle(e.target.value);
+  };
+
+  const handleSave = (index) => {
+    setTabs((prevTabs) => {
+      const updatedTabs = [...prevTabs];
+      updatedTabs[index].title = newTitle;
+      return updatedTabs;
+    });
+    setEditIndex(null);
+  };
+
+  const handleRemove = (index) => {
     const updatedTabs = [...tabs];
-    updatedTabs[index].showContent = !updatedTabs[index].showContent;
+    updatedTabs.splice(index, 1);
     setTabs(updatedTabs);
   };
 
@@ -77,7 +108,36 @@ function Bookmark({ active, itemsToAdd }) {
                 className="toggle-area"
               >
                 <h2 className="zalozka-nadpis">
-                  Záložka č.{index}
+                  {index}.&nbsp;
+                  {editIndex === index ? (
+                    <>
+                      <input
+                        type="text"
+                        value={newTitle}
+                        onChange={handleTitleChange}
+                        className="zalozka-nazov"
+                        required="true"
+                        autoFocus="true"
+                        placeholder="Zadajte názov záložky"
+                      />
+                      <SaveIcon
+                        className="save-btn"
+                        onClick={() => handleSave(index)}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      {tab.title}
+                      <EditIcon
+                        className="edit-btn"
+                        onClick={() => handleEditClick(index)}
+                      />
+                      <DeleteIcon
+                      className="delete-bookmark-btn"
+                      onClick={() => handleRemove(index)}
+                    />
+                    </>
+                  )}
                   <span className="zalozka-toggle">
                     {tab.showContent ? (
                       <ArrowDropUpIcon />
@@ -92,7 +152,7 @@ function Bookmark({ active, itemsToAdd }) {
                 <div className="zalozka-obsah">
                   {tab.items.map((item, itemIndex) => (
                     <p key={itemIndex}>
-                     {item.title} | {item.type}
+                      {item.title} | {item.type}
                     </p>
                   ))}
                 </div>

@@ -12,10 +12,9 @@ function ItemsToAdd({
   handleAddItem,
 }) {
   const handleAddLine = () => {
-    setShowLine(true);
+    setShowLine((prevLines) => [...prevLines, <div className="line"></div>]);
   };
-
-  const [showLine, setShowLine] = useState(false);
+  const [showLine, setShowLine] = useState([]);
 
   const [showFieldAndType, setShowFieldAndType] = useState(false);
 
@@ -74,8 +73,8 @@ function ItemsToAdd({
 
               {itemsToAdd.map((item, index) => (
                 <Draggable
-                  key={item.iId}
-                  draggableId={`itemToAdd-${item.iId}`}
+                  key={`itemToAdd-${index}`}
+                  draggableId={`itemToAdd-${index}`}
                   index={index}
                 >
                   {(provided, snapshot) => (
@@ -104,7 +103,31 @@ function ItemsToAdd({
                 </Draggable>
               ))}
               {provided.placeholder}
-              {showLine && <div className="line"></div>}
+              {showLine.map((line, index) => (
+                <Draggable
+                  key={`line-${index}`}
+                  draggableId={`line-${index}`}
+                  index={index + itemsToAdd.length}
+                >
+                  {(provided, snapshot) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        height: "10px",
+                        backgroundColor: "#3592fc",
+                        borderRadius: "3px",
+                        margin: "8px 0 2.5rem 0",
+                        ...provided.draggableProps.style,
+                      }}
+                    ></div>
+                  )}
+                </Draggable>
+              ))}
             </div>
           );
         }}

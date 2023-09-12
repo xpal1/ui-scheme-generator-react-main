@@ -9,7 +9,7 @@ import SaveIcon from "@mui/icons-material/Save";
 import DeleteIcon from '@mui/icons-material/Delete';
 import "./bookmark.css";
 
-function Bookmark({ active, itemsToAdd }) {
+function Bookmark({ active, itemsToAdd, newItem }) {
   const [tabCount, setTabCount] = useState(1);
   const [tabs, setTabs] = useState([{ id: tabCount, items: [] }]);
   const [activeTab, setActiveTab] = useState(0);
@@ -53,6 +53,7 @@ function Bookmark({ active, itemsToAdd }) {
     setTabs((prevTabs) => {
       const updatedTabs = [...prevTabs];
       updatedTabs[index].title = newTitle;
+      console.log(newTitle);
       return updatedTabs;
     });
     setEditIndex(null);
@@ -66,23 +67,40 @@ function Bookmark({ active, itemsToAdd }) {
 
   const generateSchema = () => {
     const schema = itemsToAdd.reduce((acc, item) => {
-      return {
+      return [
         ...acc,
-        [item.iId]: {
-          title: item.iTitle,
-          type: item.iType,
-          field: item.iField,
-          required: item.iIsRequired,
-          maxValue: item.iMaxValue,
-          maxLength: item.iMaxLength,
-          tabIndex: item.iTabIndex,
-        },
-      };
-    }, {});
+        [
+          {
+            nazovZalozky: newTitle,
+          },
+          [
+            [
+              {
+                title: item.iTitle,
+                type: item.iType,
+                field: item.iField,
+                required: item.iIsRequired,
+                maxValue: item.iMaxValue,
+                maxLength: item.iMaxLength,
+                tabIndex: item.iTabIndex,
+              },
+            ],
+          ],
+          [
+            [
+              {
+                vlastnaPolozka: newItem.iTitle,
+              },
+            ]
+          ],
+        ],
+      ];
+    }, []);
 
-    console.log(JSON.stringify(schema));
 
-    const schemaJson = JSON.stringify(schema);
+    const schemaJson = JSON.stringify(schema, null, 2);
+    console.log(schemaJson);
+
     const file = new Blob([schemaJson], { type: "application/json" });
 
     const url = URL.createObjectURL(file);

@@ -14,9 +14,11 @@ function ItemsContainer({
   setState,
 }) {
   const [itemsToAdd, setItemsToAdd] = React.useState([]);
+  const [newItem, setNewItem] = React.useState(null);
 
   const handleAddItem = (newItem) => {
     setItemsToAdd((prevItems) => [...prevItems, newItem]);
+    setNewItem(newItem);
     console.log("newItem", newItem);
   };
 
@@ -114,7 +116,7 @@ function ItemsContainer({
           schema3Data={schema3Data}
         />
         {tabs.map((tab, index) => (
-          <Bookmark key={index} itemsToAdd={itemsToAdd} active={tab.active} />
+          <Bookmark key={index} newItem={newItem} itemsToAdd={itemsToAdd} active={tab.active} />
         ))}
       </DragDropContext>
     </div>
